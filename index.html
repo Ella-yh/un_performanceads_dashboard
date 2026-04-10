@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Google Charts loader removed: using fetch+PapaParse instead -->
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#F9FAFB;--card:#FFF;--border:#E5E7EB;--text:#1E293B;--text2:#64748B;--text3:#94A3B8;
@@ -186,39 +186,13 @@ const SHEET_URLS = {
 // ===== 로딩 UI =====
 document.getElementById('tA').insertAdjacentHTML('afterbegin','<div id="loadMsg" style="text-align:center;padding:40px;color:#64748B;font-size:15px">Google Sheets 데이터 로딩 중...</div>');
 
-// ===== Data Fetch Helper (CORS-safe via Google Visualization API) =====
-function gvizURL(csvUrl){
-  // Convert pub?gid=xxx&output=csv → gviz/tq?gid=xxx
-  const base = csvUrl.split('/pub?')[0];
-  const gid = csvUrl.match(/gid=(\d+)/)[1];
-  return base + '/gviz/tq?tqx=out:csv&headers=1&gid=' + gid;
-}
-
-function fetchCSV(url){
-  return new Promise((resolve, reject) => {
-    const gUrl = gvizURL(url);
-    google.charts.load('current');
-    google.charts.setOnLoadCallback(()=>{
-      const query = new google.visualization.Query(gUrl);
-      query.send(response => {
-        if(response.isError()){reject(new Error(response.getMessage()));return}
-        const dt = response.getDataTable();
-        const headers = [];
-        for(let c=0;c<dt.getNumberOfColumns();c++) headers.push(dt.getColumnLabel(c));
-        const rows = [];
-        for(let r=0;r<dt.getNumberOfRows();r++){
-          const row = {};
-          for(let c=0;c<headers.length;c++){
-            let v = dt.getValue(r,c);
-            if(v instanceof Date) v = v.toISOString().substring(0,10);
-            row[headers[c]] = v;
-          }
-          rows.push(row);
-        }
-        resolve(rows);
-      });
-    });
-  });
+// ===== Data Fetch Helper (fetch + PapaParse — works on https:// origins) =====
+async function fetchCSV(url){
+  const res = await fetch(url, {redirect:'follow'});
+  if(!res.ok) throw new Error('HTTP ' + res.status + ' — ' + url.substring(0,80));
+  const text = await res.text();
+  const parsed = Papa.parse(text, {header:true, skipEmptyLines:true, dynamicTyping:false});
+  return parsed.data;
 }
 
 function nv(v){const n=parseFloat(v);return isNaN(n)?0:n}
@@ -338,7 +312,7 @@ async function loadAllData(){
   }catch(e){
     console.error('❌ 데이터 로드 실패:', e);
     const lm=document.getElementById('loadMsg');
-    if(lm) lm.innerHTML='<div style="color:#F43F5E">데이터 로드 실패. 새로고침하거나 Google Sheets 웹 게시 상태를 확인하세요.<br><small>'+e.message+'</small></div>';
+    if(lm) lm.innerHTML='<div style="color:#F43F5E">데이터 로드 실패.<br>1) Google Sheets가 "웹에 게시" 상태인지 확인<br>2) 이 페이지를 https:// 주소로 열었는지 확인 (file://에서는 CORS 차단)<br><small>'+e.message+'</small></div>';
   }
 }
 
