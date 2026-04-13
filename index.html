@@ -20,19 +20,10 @@ body{font-family:'Pretendard Variable',Inter,-apple-system,sans-serif;background
 .hdr{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;background:var(--card);border-radius:16px;margin-bottom:24px;border:1px solid var(--border);box-shadow:var(--sh)}
 .hdr h1{font-size:22px;font-weight:800;color:var(--slate);letter-spacing:-.02em}.hdr h1 span{color:var(--blue)}
 .hdr .tag{font-size:11px;padding:4px 10px;background:var(--blue-l);color:var(--blue);border-radius:20px;font-weight:600}
-.es{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-.ec{padding:16px 20px;border-radius:14px;border:1px solid var(--border);background:var(--card);box-shadow:var(--sh)}
-.ec .el{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.ec .el::before{content:'';width:6px;height:6px;border-radius:50%}
-.ec.good .el{color:var(--green)}.ec.good .el::before{background:var(--green)}
-.ec.bad .el{color:var(--red)}.ec.bad .el::before{background:var(--red)}
-.ec.act .el{color:var(--blue)}.ec.act .el::before{background:var(--blue)}
-.ec p{font-size:12.5px;color:var(--text2);line-height:1.7}.ec p strong{color:var(--text)}
 .tabs{display:inline-flex;gap:2px;margin-bottom:24px;background:var(--card);border-radius:12px;padding:4px;border:1px solid var(--border)}
 .tab{padding:8px 24px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--text2);font-size:13px;transition:all .2s}
 .tab:hover{color:var(--text)}.tab.active{background:var(--blue);color:#fff;box-shadow:0 2px 4px rgba(59,130,246,.25)}
 .tc{display:none}.tc.active{display:block}
-
 /* Multi-select filters */
 .flt{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:14px;align-items:flex-start;box-shadow:var(--sh)}
 .fg{display:flex;flex-direction:column;gap:4px;position:relative}
@@ -47,7 +38,6 @@ body{font-family:'Pretendard Variable',Inter,-apple-system,sans-serif;background
 .ms-dd label.dim{color:var(--text3);opacity:.5}
 .ms-dd label.dim:hover{opacity:.7}
 .ms-dd input{accent-color:var(--blue)}
-
 .kr{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--sh);transition:box-shadow .2s}
 .kpi:hover{box-shadow:var(--sh2)}
@@ -56,7 +46,6 @@ body{font-family:'Pretendard Variable',Inter,-apple-system,sans-serif;background
 .kpi .ks{font-size:11px;color:var(--text2);margin-top:3px}
 .kpi .mom{font-size:11px;margin-top:4px;font-weight:700;display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:6px}
 .kpi .mom.up{color:var(--green);background:var(--green-l)}.kpi .mom.down{color:var(--red);background:var(--red-l)}.kpi .mom.neutral{color:var(--text3);background:var(--bg)}
-
 .sec{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:20px;box-shadow:var(--sh)}
 .sec-t{font-size:14px;font-weight:700;margin-bottom:16px;color:var(--slate);display:flex;align-items:center;gap:8px}
 .sec-t .dot{width:8px;height:8px;border-radius:50%}
@@ -76,7 +65,6 @@ span.na{color:var(--text3);font-style:italic}
 .wk-date{font-size:10px;color:var(--text3);font-weight:400;margin-left:2px}
 td.grp{color:var(--text2);border-right:1px solid #F1F5F9}
 td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-right:1px solid #F1F5F9}
-
 .cr{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 .cb{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh)}
 .cb h3{font-size:13px;color:var(--text2);margin-bottom:12px;font-weight:600}
@@ -89,7 +77,6 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
 .pb{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--sh)}
 .pb h3{font-size:13px;color:var(--text2);margin-bottom:10px;font-weight:600;text-align:center}
 .pb canvas{max-height:220px}
-
 .tp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
 .tc2{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--sh)}
 .tc2 h3{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--slate)}
@@ -111,8 +98,7 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
 .mb.tiktok{background:#ECFEFF;color:#0891B2}
 .mb.gsa{background:#FFFBEB;color:#D97706}
 @media(max-width:1200px){.kr{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.es,.cr,.tp,.pr{grid-template-columns:1fr}}
-
+@media(max-width:768px){.cr,.tp,.pr{grid-template-columns:1fr}}
 .thumb{width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:transform .2s}
 .thumb:hover{transform:scale(3.5);z-index:999;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.3);border-radius:8px}
 .thumb-lg{width:56px;height:56px;border-radius:8px;object-fit:cover;border:1px solid var(--border);background:var(--bg)}
@@ -122,9 +108,7 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
 <body>
 <div class="ct">
 <div class="hdr"><h1><span>UNOVE</span> Performance Dashboard</h1><span class="tag">2026.01 — 04.06</span></div>
-<div class="es" id="esArea"></div>
 <div class="tabs"><div class="tab active" onclick="switchTab('tA')">전체 성과</div><div class="tab" onclick="switchTab('tB')">메타 소재별 성과</div></div>
-
 <div id="tA" class="tc active">
   <div class="flt" id="fltArea"></div>
   <div class="kr" id="kpiRow"></div>
@@ -142,7 +126,6 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
   <div class="sec"><div class="sec-t"><div class="dot" style="background:#0891B2"></div>주간 성과 트렌드</div><div class="tw" style="max-height:380px;overflow-y:auto"><table id="tWk"><thead><tr><th>주차</th><th>광고비(원)</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CPV</th><th>VTR</th><th>장바구니 CVR</th><th>장바구니 CPA</th><th>구매 CVR</th><th>구매 CPA</th><th>ER(종합)</th><th>ER(공감)</th><th>ER(댓글)</th><th>ER(공유)</th><th>ER(저장)</th></tr></thead><tbody></tbody></table></div></div>
   <div class="sec"><div class="sec-t"><div class="dot" style="background:#D97706"></div>드릴다운</div><div class="tw" style="max-height:500px;overflow-y:auto"><table id="tDr"><thead><tr><th>매체</th><th>캠페인 목표</th><th>최적화 목표</th><th>소재 그룹</th><th>광고비(원)</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CPV</th><th>VTR</th><th>장바구니 CVR</th><th>구매 CVR</th><th>ER(종합)</th><th>ER(공감)</th><th>ER(댓글)</th><th>ER(공유)</th><th>ER(저장)</th></tr></thead><tbody></tbody></table></div></div>
 </div>
-
 <div id="tB" class="tc">
   <div class="flt" id="fltAreaB"></div>
   <div style="margin-bottom:10px;font-size:12px;color:var(--text3);font-weight:500">※ 광고비 10만원 이하 소재는 우수 소재 선정 및 하이라이트에서 제외</div>
@@ -171,10 +154,8 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
   </div>
 </div>
 </div>
-
 <script>
 Chart.register(ChartDataLabels);
-
 // ===== Google Sheets CSV URLs =====
 const SHEET_URLS = {
   meta: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVwpjTxiLuBkxcSfVJkmSxwwErUx83pFP4cnIsHAQRY6ijQFI2UPCWxd_Fv8vLiDJMMSz-FSrEsmSJ/pub?gid=286516219&single=true&output=csv',
@@ -182,10 +163,8 @@ const SHEET_URLS = {
   gsa: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVwpjTxiLuBkxcSfVJkmSxwwErUx83pFP4cnIsHAQRY6ijQFI2UPCWxd_Fv8vLiDJMMSz-FSrEsmSJ/pub?gid=2005117442&single=true&output=csv',
   index: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVwpjTxiLuBkxcSfVJkmSxwwErUx83pFP4cnIsHAQRY6ijQFI2UPCWxd_Fv8vLiDJMMSz-FSrEsmSJ/pub?gid=2090849911&single=true&output=csv'
 };
-
 // ===== 로딩 UI =====
 document.getElementById('tA').insertAdjacentHTML('afterbegin','<div id="loadMsg" style="text-align:center;padding:40px;color:#64748B;font-size:15px">Google Sheets 데이터 로딩 중...</div>');
-
 // ===== Data Fetch Helper (fetch + PapaParse — works on https:// origins) =====
 async function fetchCSV(url){
   const res = await fetch(url, {redirect:'follow'});
@@ -194,17 +173,14 @@ async function fetchCSV(url){
   const parsed = Papa.parse(text, {header:true, skipEmptyLines:true, dynamicTyping:false});
   return parsed.data;
 }
-
 function nv(v){const n=parseFloat(v);return isNaN(n)?0:n}
 function mapCG(v){if(!v)return '';const s=v.trim().toLowerCase();if(s==='conv')return '전환';if(s==='cons'||s==='awr')return '트래픽';return s}
 function mapOG(v){return v?v.trim().toLowerCase():''}
 function mapPG(v){if(!v)return '';const s=v.trim();if(s.toUpperCase().startsWith('KOL'))return 'KOL';if(s.toLowerCase()==='hair')return 'GSA';return s}
 function usWeek(dtStr){if(!dtStr)return 0;const d=new Date(dtStr);const jan1=new Date(d.getFullYear(),0,1);const dayOfYear=Math.floor((d-jan1)/86400000)+1;const jan1Day=jan1.getDay();return Math.floor((dayOfYear+jan1Day-1)/7)}
-
 // ===== 메인 로드 =====
 let RAW=[], WL={}, AD_IMG={};
 const MN = {M:'Meta',T:'Tiktok',G:'GSA'};
-
 async function loadAllData(){
   try{
     const [metaData, tikData, gsaData, idxData] = await Promise.all([
@@ -213,15 +189,10 @@ async function loadAllData(){
       fetchCSV(SHEET_URLS.gsa),
       fetchCSV(SHEET_URLS.index)
     ]);
-
     const rows = [];
     const wkDates = {};
-
-    // ===== Helper: 헤더명으로 값 가져오기 (대소문자/공백 무시) =====
     function col(row, name){
-      // gviz DataTable은 헤더명으로 키가 설정됨
       if(row[name] !== undefined) return row[name];
-      // 공백 차이 등 fuzzy match
       const keys = Object.keys(row);
       const norm = s => (s||'').replace(/\s+/g,'').toLowerCase();
       const target = norm(name);
@@ -230,7 +201,6 @@ async function loadAllData(){
     }
     function ncol(row, name){ return nv(col(row, name)); }
     function scol(row, name){ const v=col(row, name); return v!=null?String(v).trim():''; }
-
     // ===== Meta 파싱 =====
     metaData.forEach(r=>{
       const cost = ncol(r,'최종 광고비 (원)');
@@ -243,7 +213,6 @@ async function loadAllData(){
         c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
-
     // ===== Tiktok 파싱 (2026 only) =====
     tikData.forEach(r=>{
       const dt = scol(r,'날짜').substring(0,10);
@@ -257,7 +226,6 @@ async function loadAllData(){
         c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
-
     // ===== GSA 파싱 =====
     gsaData.forEach(r=>{
       const cost = ncol(r,'최종 광고비 (원)');
@@ -270,21 +238,18 @@ async function loadAllData(){
         c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:''});
     });
-
     // ===== WL (주차 라벨) 생성 =====
     Object.keys(wkDates).forEach(wk=>{
       const d = wkDates[wk];
       const fmtD = s => s.substring(5).replace('-','.');
       WL[String(wk)] = 'W'+wk+'('+fmtD(d.min)+'~'+fmtD(d.max)+')';
     });
-
     // ===== 소재인덱싱 → AD_IMG =====
     idxData.forEach(r=>{
       const adName = scol(r,'ad name');
       const imgUrl = scol(r,'소재이미지');
       if(adName && imgUrl) AD_IMG[adName] = imgUrl;
     });
-
     // ===== D.s (필터 메타) 생성 =====
     const sData = {
       medias: [...new Set(rows.map(r=>r.m))].sort(),
@@ -294,35 +259,25 @@ async function loadAllData(){
       opt_goals: [...new Set(rows.map(r=>r.og))].filter(Boolean).sort(),
       product_groups: [...new Set(rows.map(r=>r.pg))].filter(Boolean).sort()
     };
-
-    // ===== 글로벌 할당 =====
     RAW = rows;
     window._sData = sData;
-
-    // 로딩 메시지 제거
     const lm=document.getElementById('loadMsg');if(lm)lm.remove();
-
     console.log('✅ Data loaded: RAW='+RAW.length+' AD_IMG='+Object.keys(AD_IMG).length+' WL='+Object.keys(WL).length);
     console.log('   Meta:'+RAW.filter(r=>r.m==='Meta').length+' Tiktok:'+RAW.filter(r=>r.m==='Tiktok').length+' GSA:'+RAW.filter(r=>r.m==='GSA').length);
     console.log('   CG:', [...new Set(RAW.map(r=>r.cg))]);
-
-    // 초기화
-    buildFilters();buildFiltersB();renderES();renderKPIs();renderTables();rC1();rC2();rPies();renderTabB();
-
+    buildFilters();buildFiltersB();renderKPIs();renderTables();rC1();rC2();rPies();renderTabB();
   }catch(e){
     console.error('❌ 데이터 로드 실패:', e);
     const lm=document.getElementById('loadMsg');
     if(lm) lm.innerHTML='<div style="color:#F43F5E">데이터 로드 실패.<br>1) Google Sheets가 "웹에 게시" 상태인지 확인<br>2) 이 페이지를 https:// 주소로 열었는지 확인 (file://에서는 CORS 차단)<br><small>'+e.message+'</small></div>';
   }
 }
-
 const $=s=>document.getElementById(s);const $$=s=>document.querySelectorAll(s);
 const F=(n,t)=>{if(n==null)return'<span class="na">N/A</span>';if(t==='w')return n.toLocaleString()+'원';if(t==='p')return n.toFixed(2)+'%';if(t==='p3')return n.toFixed(3)+'%';if(t==='p4')return n.toFixed(4)+'%';return n};
 const fC=n=>n==null?'N/A':n.toLocaleString()+'원';
 const fS=n=>{if(n==null)return'N/A';if(n>=1e8)return(n/1e8).toFixed(1)+'억';if(n>=1e7)return(n/1e7).toFixed(1)+'천만';if(n>=1e4)return Math.round(n/1e4).toLocaleString()+'만';return n.toLocaleString()};
 const wkL=w=>WL[String(w)]||('W'+w);
 function switchTab(id){$$('.tc').forEach(t=>t.classList.remove('active'));$$('.tab').forEach(t=>t.classList.remove('active'));$(id).classList.add('active');$$('.tab')[id==='tA'?0:1].classList.add('active')}
-
 // ===== MULTI-SELECT FILTERS =====
 const FILTERS={m:[],mo:[],wk:[],ch:[],cg:[],og:[],pg:[]};
 const FKEYS=['m','mo','wk','ch','cg','og','pg'];
@@ -367,7 +322,6 @@ function applyF(rows){
     return true;
   });
 }
-
 function updateFilterHighlights(){
   const fgs=[...document.querySelectorAll('#fltArea .fg')];
   FKEYS.forEach((k,idx)=>{
@@ -391,7 +345,6 @@ function updateFilterHighlights(){
     });
   });
 }
-
 function agg(rows){
   let c=0,i=0,cl=0,v=0,ca=0,cv=0,lk=0,cm=0,sh=0,sv=0;
   for(const r of rows){c+=r.c;i+=r.i;cl+=r.cl;v+=r.v;ca+=r.ca;cv+=r.cv;lk+=r.lk;cm+=r.cm;sh+=r.sh;sv+=r.sv}
@@ -405,103 +358,14 @@ function agg(rows){
     er_cmt:i>0?Math.round(cm/i*1e6)/1e4:0,er_share:i>0?Math.round(sh/i*1e5)/1000:0,er_save:i>0?Math.round(sv/i*1e5)/1000:0}
 }
 function byKey(rows,fn){const g={};rows.forEach(r=>{const k=fn(r);(g[k]||(g[k]=[])).push(r)});return Object.entries(g).map(([k,rs])=>({...agg(rs),label:k})).sort((a,b)=>a.label.localeCompare(b.label))}
-
-// Executive Summary — 전월 대비 + 전주 대비 자동 코멘트
-function renderES(){
-  const allMs=[...new Set(RAW.map(r=>r.mo))].sort((a,b)=>a-b);
-  const allWks=[...new Set(RAW.map(r=>r.wk))].sort((a,b)=>a-b);
-  const curM=allMs[allMs.length-1],prevM=allMs.length>1?allMs[allMs.length-2]:null;
-  const curWk=allWks[allWks.length-1],prevWk=allWks.length>1?allWks[allWks.length-2]:null;
-  const pct=(c,p)=>{if(!p||p===0)return null;return Math.round((c-p)/p*100)};
-  const sign=v=>v>0?'+'+v+'%':v+'%';
-  const goods=[],bads=[],acts=[];
-
-  // MoM analysis
-  if(prevM!=null){
-    const mCur=agg(RAW.filter(r=>r.mo===curM));
-    const mPrev=agg(RAW.filter(r=>r.mo===prevM));
-    const cpmC=pct(mCur.cpm,mPrev.cpm);
-    const ctrC=pct(mCur.ctr,mPrev.ctr);
-    // Per media MoM
-    ['Meta','Tiktok','GSA'].forEach(media=>{
-      const mc=RAW.filter(r=>r.mo===curM&&r.m===media);
-      const mp=RAW.filter(r=>r.mo===prevM&&r.m===media);
-      if(!mc.length||!mp.length)return;
-      const ac=agg(mc),ap=agg(mp);
-      const cpmP=pct(ac.cpm,ap.cpm);
-      const ctrP=pct(ac.ctr,ap.ctr);
-      const erP=pct(ac.er,ap.er);
-      if(ctrP!==null&&ctrP>10)goods.push(media+' CTR '+ap.ctr+'%→'+ac.ctr+'%('+sign(ctrP)+') 전월 대비 개선');
-      if(ctrP!==null&&ctrP<-10)bads.push(media+' CTR '+ap.ctr+'%→'+ac.ctr+'%('+sign(ctrP)+') 전월 대비 하락');
-      if(cpmP!==null&&cpmP>15)bads.push(media+' CPM '+F(ap.cpm,'w')+'→'+F(ac.cpm,'w')+'('+sign(cpmP)+') 비용 효율 악화');
-      if(cpmP!==null&&cpmP<-10)goods.push(media+' CPM '+F(ap.cpm,'w')+'→'+F(ac.cpm,'w')+'('+sign(cpmP)+') 비용 효율 개선');
-      if(erP!==null&&erP>20)goods.push(media+' ER '+ap.er+'%→'+ac.er+'%('+sign(erP)+') 인게이지먼트 상승');
-      // Cart CVR improvement
-      if(ac.cart_cvr&&ap.cart_cvr){const cvP=pct(ac.cart_cvr,ap.cart_cvr);if(cvP>20)goods.push(media+' 장바구니 CVR '+ap.cart_cvr+'%→'+ac.cart_cvr+'%('+sign(cvP)+')');}
-    });
-    // Overall MoM
-    if(cpmC!==null&&Math.abs(cpmC)<5)goods.push('전체 CPM 전월 대비 안정적('+sign(cpmC)+')');
-  }
-
-  // WoW analysis
-  if(prevWk!=null){
-    ['Meta','Tiktok','GSA'].forEach(media=>{
-      const wc=RAW.filter(r=>r.wk===curWk&&r.m===media);
-      const wp=RAW.filter(r=>r.wk===prevWk&&r.m===media);
-      if(!wc.length||!wp.length)return;
-      const ac=agg(wc),ap=agg(wp);
-      const ctrP=pct(ac.ctr,ap.ctr);
-      const erP=pct(ac.er,ap.er);
-      const cpmP=pct(ac.cpm,ap.cpm);
-      if(ctrP!==null&&ctrP>15)goods.push('[WoW] '+media+' CTR '+sign(ctrP)+' 전주 대비 상승');
-      if(ctrP!==null&&ctrP<-15)bads.push('[WoW] '+media+' CTR '+sign(ctrP)+' 전주 대비 하락');
-      if(cpmP!==null&&cpmP>20)bads.push('[WoW] '+media+' CPM '+sign(cpmP)+' 전주 대비 상승');
-      if(erP!==null&&erP>30)goods.push('[WoW] '+media+' ER '+sign(erP)+' 전주 대비 급상승');
-    });
-  }
-
-  // Structural insights
-  const metaRows=RAW.filter(r=>r.m==='Meta');
-  const pgG={};metaRows.forEach(r=>{(pgG[r.pg]||(pgG[r.pg]=[])).push(r)});
-  const pgAgg=Object.entries(pgG).map(([k,rs])=>({pg:k,...agg(rs)}));
-  // Best CTR product group
-  const bestCTR=pgAgg.filter(p=>p.imp>100000).sort((a,b)=>b.ctr-a.ctr)[0];
-  if(bestCTR)goods.push('Meta '+bestCTR.pg+' 소재 그룹 CTR '+bestCTR.ctr+'%로 최고 효율');
-  // Brandfilm check (high CPM low CTR)
-  const bf=pgAgg.find(p=>p.pg==='brandfilm');
-  if(bf&&bf.ctr<0.5&&bf.imp>100000)bads.push('Meta brandfilm CTR '+bf.ctr+'%, CPM '+F(bf.cpm,'w')+'으로 비효율 지속');
-  // TikTok no conversion data
-  const tkRows=RAW.filter(r=>r.m==='Tiktok');
-  if(tkRows.length>0&&tkRows.every(r=>r.ca===0&&r.cv===0))bads.push('TikTok 전환/장바구니 데이터 미수집 — Full-funnel 분석 불가');
-
-  // Action Items
-  if(tkRows.length>0&&tkRows.every(r=>r.ca===0))acts.push('TikTok 전환 트래킹 설정 점검 필요');
-  if(bestCTR&&bestCTR.pg==='KOL')acts.push('KOL 소재 비중 확대 검토 (CTR '+bestCTR.ctr+'%)');
-  if(bf&&bf.ctr<0.5)acts.push('brandfilm 소재 효율 점검 — 크리에이티브 리프레시 또는 예산 재배분 검토');
-  // Check if any media has rising CPM trend
-  if(prevM!=null){
-    const metaCur=agg(RAW.filter(r=>r.mo===curM&&r.m==='Meta'));
-    const metaPrev=agg(RAW.filter(r=>r.mo===prevM&&r.m==='Meta'));
-    if(metaCur.cpm>metaPrev.cpm&&pct(metaCur.cpm,metaPrev.cpm)>10)acts.push('Meta CPM 상승 추세 — 타겟/소재 최적화 또는 예산 효율화 필요');
-  }
-  if(acts.length===0)acts.push('현재 KPI 모니터링 유지. 주간 단위 효율 추적 권장.');
-
-  const gl=goods.length?goods.map(g=>'· '+g).join('<br>'):'특이사항 없음';
-  const bl=bads.length?bads.map(b=>'· '+b).join('<br>'):'특이사항 없음';
-  const al=acts.map((a,i)=>(i+1)+'. '+a).join('<br>');
-  $('esArea').innerHTML='<div class="ec good"><div class="el">GOOD</div><p>'+gl+'</p></div><div class="ec bad"><div class="el">BAD</div><p>'+bl+'</p></div><div class="ec act"><div class="el">ACTION ITEM</div><p>'+al+'</p></div>';
-}
-
 // KPI — MoM(월 1개 선택) 또는 WoW(주차 1개 선택) 증감률 표시. 다중 선택 시 숨김.
 function renderKPIs(){
   const rows=applyF(RAW),t=agg(rows);
   const singleFilters=FKEYS.every(k=>FILTERS[k].length<=1);
   const hasMonthFilter=FILTERS.mo.length===1 && singleFilters;
-  // WoW: 주차 필터 1개 선택 시 전주 대비 증감률 표시
   const hasWeekFilter=FILTERS.wk.length===1 && singleFilters;
   let ml=null,mp=null;
   if(hasMonthFilter){
-    // Compare selected month(s) vs the month right before the earliest selected
     const selMonths=FILTERS.mo.map(Number).sort((a,b)=>a-b);
     const fNoMo=RAW.filter(r=>{
       if(FILTERS.m.length&&!FILTERS.m.includes(r.m))return false;
@@ -519,7 +383,6 @@ function renderKPIs(){
       mp=agg(fNoMo.filter(r=>r.mo===prevM));
     }
   } else if(hasWeekFilter){
-    // WoW: compare selected week vs previous week
     const selWk=Number(FILTERS.wk[0]);
     const fNoWk=RAW.filter(r=>{
       if(FILTERS.m.length&&!FILTERS.m.includes(r.m))return false;
@@ -551,35 +414,25 @@ function renderKPIs(){
   ];
   $('kpiRow').innerHTML=kpis.map(k=>'<div class="kpi"><div class="kl">'+k.l+'</div><div class="kv">'+k.v+'</div><div class="ks">'+k.s+'</div>'+k.mm+'</div>').join('');
 }
-
 const fullR=d=>'<td>'+F(d.cost,'w')+'</td><td>'+F(d.cpm,'w')+'</td><td>'+F(d.ctr,'p')+'</td><td>'+F(d.cpc,'w')+'</td><td>'+F(d.cpv,'w')+'</td><td>'+F(d.vtr,'p')+'</td><td>'+F(d.cart_cvr,'p')+'</td><td>'+F(d.cart_cpa,'w')+'</td><td>'+F(d.pur_cvr,'p')+'</td><td>'+F(d.pur_cpa,'w')+'</td><td>'+F(d.er,'p3')+'</td><td>'+F(d.er_like,'p3')+'</td><td>'+F(d.er_cmt,'p4')+'</td><td>'+F(d.er_share,'p3')+'</td><td>'+F(d.er_save,'p3')+'</td>';
-
 function renderTables(){
   const rows=applyF(RAW);
-  // Media
   const ms=[...new Set(rows.map(r=>r.m))].map(m=>{const a=agg(rows.filter(r=>r.m===m));a.media=m;return a});
   const tot=agg(rows);tot.media='Total';ms.push(tot);
   document.querySelector('#tMedia tbody').innerHTML=ms.map(d=>'<tr class="'+(d.media==='Total'?'total-row':'')+'"><td>'+d.media+'</td>'+fullR(d)+'</tr>').join('');
-  // Monthly
   document.querySelector('#tMo tbody').innerHTML=byKey(rows,r=>r.mo+'월').map(d=>'<tr><td>'+d.label+'</td>'+fullR(d)+'</tr>').join('');
-  // Weekly (full ER)
   const wd=byKey(rows,r=>String(r.wk).padStart(2,'0')).sort((a,b)=>b.label.localeCompare(a.label));
   document.querySelector('#tWk tbody').innerHTML=wd.map(d=>{const wn=parseInt(d.label);const wl=wkL(wn);const p=wl.match(/^(W\d+)(\(.+\))$/);const disp=p?p[1]+'<span class="wk-date">'+p[2]+'</span>':wl;return'<tr><td>'+disp+'</td>'+fullR(d)+'</tr>'}).join('');
-  // Drilldown with cell grouping
   renderDrilldown(rows);
 }
-
 function renderDrilldown(rows){
   const g={};const order=[];
   rows.forEach(r=>{if(!r.cg||!r.og||!r.pg)return;const k=r.m+'|'+r.cg+'|'+r.og+'|'+r.pg;if(!g[k]){g[k]={m:r.m,cg:r.cg,og:r.og,pg:r.pg,rows:[]};order.push(k)}g[k].rows.push(r)});
-  // Sort by media, cg, og, pg
   order.sort((a,b)=>{const ga=g[a],gb=g[b];return(ga.m+ga.cg+ga.og+ga.pg).localeCompare(gb.m+gb.cg+gb.og+gb.pg)});
-  // Count rowspans
   const items=order.map(k=>{const x=g[k];return{...x,agg:agg(x.rows)}});
   let html='';
   for(let i=0;i<items.length;i++){
     const x=items[i],a=x.agg;
-    // Check rowspans
     let mSpan=1,cgSpan=1,ogSpan=1;
     for(let j=i+1;j<items.length;j++){if(items[j].m===x.m)mSpan++;else break}
     for(let j=i+1;j<items.length;j++){if(items[j].m===x.m&&items[j].cg===x.cg)cgSpan++;else break}
@@ -596,8 +449,6 @@ function renderDrilldown(rows){
   }
   document.querySelector('#tDr tbody').innerHTML=html;
 }
-
-// Charts — smaller points
 let ch1,ch2,tu1='m',tu2='m';
 const cOp={responsive:true,maintainAspectRatio:true,interaction:{intersect:false,mode:'index'},plugins:{legend:{labels:{color:'#64748B',font:{size:11,family:'Pretendard Variable'}}},datalabels:{display:false},tooltip:{backgroundColor:'#1E293B',titleFont:{size:12},bodyFont:{size:11},cornerRadius:8,padding:10}},
   scales:{x:{ticks:{color:'#94A3B8',maxRotation:45,autoSkip:true,maxTicksLimit:20,font:{size:10}},grid:{color:'#F1F5F9'}},y:{ticks:{color:'#94A3B8',font:{size:10}},grid:{color:'#F1F5F9'}},y1:{position:'right',ticks:{color:'#94A3B8',font:{size:10}},grid:{display:false}}}};
@@ -605,8 +456,6 @@ function gTD(u){const rows=applyF(RAW);if(u==='m')return byKey(rows,r=>r.mo+'월
 function rC1(){const d=gTD(tu1);if(ch1)ch1.destroy();ch1=new Chart($('c1'),{type:'bar',data:{labels:d.map(x=>x.label),datasets:[{label:'광고비',data:d.map(x=>x.cost),backgroundColor:'rgba(59,130,246,.12)',borderColor:'#3b82f6',borderWidth:1,borderRadius:6,yAxisID:'y',order:2},{label:'CPM',data:d.map(x=>x.cpm),type:'line',borderColor:'#D97706',backgroundColor:'transparent',pointRadius:2,pointBackgroundColor:'#D97706',borderWidth:1.5,yAxisID:'y1',order:1,tension:.4}]},options:cOp})}
 function rC2(){const d=gTD(tu2);if(ch2)ch2.destroy();ch2=new Chart($('c2'),{type:'line',data:{labels:d.map(x=>x.label),datasets:[{label:'CTR(%)',data:d.map(x=>x.ctr),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.04)',fill:true,tension:.4,borderWidth:1.5,pointRadius:2,pointBackgroundColor:'#3b82f6',yAxisID:'y'},{label:'장바구니 CVR(%)',data:d.map(x=>x.cart_cvr||0),borderColor:'#10b981',backgroundColor:'rgba(16,185,129,.04)',fill:true,tension:.4,borderWidth:1.5,pointRadius:2,pointBackgroundColor:'#10b981',yAxisID:'y1'}]},options:cOp})}
 function setTU(n,u,b){if(n===1)tu1=u;else tu2=u;b.parentElement.querySelectorAll('.ccb').forEach(x=>x.classList.remove('active'));b.classList.add('active');n===1?rC1():rC2()}
-
-// Pie — solid (not doughnut), cleaner colors
 const pCols=['#93C5FD','#6EE7B7','#A5F3FC','#FDE68A','#A5B4FC','#FBCFE8','#FDBA74','#C4B5FD'];
 function mkP(cid,items){const tot=items.reduce((s,i)=>s+i.v,0);return new Chart($(cid),{type:'pie',data:{labels:items.map(i=>i.n),datasets:[{data:items.map(i=>i.v),backgroundColor:pCols.slice(0,items.length),borderWidth:2,borderColor:'#FFF',hoverOffset:4}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{color:'#64748B',font:{size:11,family:'Pretendard Variable'},padding:10,usePointStyle:true,pointStyle:'circle'}},datalabels:{color:'#1E293B',font:{size:11,weight:'bold',family:'Pretendard Variable'},formatter:val=>tot>0?(val/tot*100).toFixed(1)+'%':'0%',anchor:'center',align:'center'}}}})}
 let p1,p2,p3;
@@ -618,8 +467,7 @@ function rPies(){
   if(p1)p1.destroy();if(p2)p2.destroy();if(p3)p3.destroy();
   p1=mkP('p1',mp);p2=mkP('p2',pp);p3=mkP('p3',gp);
 }
-
-function onFC(){renderES();renderKPIs();renderTables();rC1();rC2();rPies()}
+function onFC(){renderKPIs();renderTables();rC1();rC2();rPies()}
 // ===== Tab B 독립 필터 =====
 const FILTERS_B={mo:[],cg:[],og:[],pg:[]};
 const FBKEYS=['mo','cg','og','pg'];
@@ -659,25 +507,18 @@ function applyFB(rows){
     return true;
   });
 }
-
-// Tab B — Dynamic: recalculated from RAW on every filter change
 function renderTabB(){
   const metaRows=applyFB(RAW).filter(r=>r.cn);
   if(!metaRows.length){['trafCTR','trafCVR','trafER','convCTR','convCVR','convER'].forEach(id=>{$(id).innerHTML='<div style="padding:12px;color:var(--text3)">데이터 없음</div>'});$('cGrps').innerHTML='';return}
-
-  // Aggregate by creative name within campaign goal
   function aggByCn(rows){
     const g={};
     rows.forEach(r=>{const k=r.cn;if(!g[k])g[k]={cn:r.cn,cg:r.cg,og:r.og,pg:r.pg,rows:[]};g[k].rows.push(r)});
     return Object.values(g).map(x=>{const a=agg(x.rows);return{...a,cn:x.cn,cg:x.cg,og:x.og,pg:x.pg,grp:x.cg+'-'+x.og+'-'+x.pg}}).filter(x=>x.cost>100000);
   }
-
   const trafRows=metaRows.filter(r=>r.cg==='트래픽');
   const convRows=metaRows.filter(r=>r.cg==='전환');
   const trafAgg=aggByCn(trafRows);
   const convAgg=aggByCn(convRows);
-
-  // Render Top 3 lists with thumbnails + detail metrics
   function renderTopList(cid,items,vKey,vFmt,bc){
     const sorted=[...items].sort((a,b)=>(b[vKey]||0)-(a[vKey]||0)).slice(0,3);
     $(cid).innerHTML=sorted.map((c,i)=>{
@@ -686,22 +527,15 @@ function renderTabB(){
       return'<div class="ti" style="align-items:flex-start;padding:10px 0"><div class="ti-img" style="align-items:flex-start">'+img+'<div><div class="tn">'+(i+1)+'. '+c.cn+'</div><div class="tg">'+c.grp+'</div><div class="ti-detail">'+detail+'</div></div></div><span class="bd '+bc+'" style="white-space:nowrap;margin-top:2px">'+vFmt(c[vKey])+'</span></div>'
     }).join('')||'<div style="padding:8px;color:var(--text3)">해당 없음</div>';
   }
-
-  // ER(공유+저장) = er_share + er_save
   const erComb=items=>items.map(c=>({...c,er_cs:(c.er_share||0)+(c.er_save||0)}));
-
   renderTopList('trafCTR',trafAgg,'ctr',v=>v.toFixed(2)+'%','bd-c');
   renderTopList('trafCVR',trafAgg.filter(x=>x.cart_cvr),'cart_cvr',v=>v?v.toFixed(2)+'%':'N/A','bd-v');
   renderTopList('trafER',erComb(trafAgg),'er_cs',v=>v.toFixed(3)+'%','bd-e');
-
   renderTopList('convCTR',convAgg,'ctr',v=>v.toFixed(2)+'%','bd-c');
   renderTopList('convCVR',convAgg.filter(x=>x.cart_cvr),'cart_cvr',v=>v?v.toFixed(2)+'%':'N/A','bd-v');
   renderTopList('convER',erComb(convAgg),'er_cs',v=>v.toFixed(3)+'%','bd-e');
-
-  // Creative Groups — group by cg-og-pg
   renderCreativeGroups(metaRows);
 }
-
 function renderCreativeGroups(metaRows){
   const ct=$('cGrps');ct.innerHTML='';
   const gMap={};const gOrder=[];
@@ -711,16 +545,13 @@ function renderCreativeGroups(metaRows){
     if(!gMap[k]){gMap[k]={key:k,cg:r.cg,og:r.og,pg:r.pg,rows:[]};gOrder.push(k)}
     gMap[k].rows.push(r);
   });
-
   gOrder.forEach((gk,gi)=>{
     const grp=gMap[gk];
     const cnMap={};
     grp.rows.forEach(r=>{if(!cnMap[r.cn])cnMap[r.cn]=[];cnMap[r.cn].push(r)});
     const cs=Object.entries(cnMap).map(([cn,rows])=>{const a=agg(rows);return{...a,cn}});
     if(!cs.length)return;
-
     const grpAgg=agg(grp.rows);
-    // 그룹 내 평균 (소액 제외) — highlight 기준
     const bigCs=cs.filter(c=>c.cost>100000);
     const avgCtr=bigCs.length?bigCs.reduce((s,c)=>s+c.ctr,0)/bigCs.length:0;
     const avgCvr=bigCs.filter(c=>c.cart_cvr).length?bigCs.filter(c=>c.cart_cvr).reduce((s,c)=>s+c.cart_cvr,0)/bigCs.filter(c=>c.cart_cvr).length:0;
@@ -728,13 +559,10 @@ function renderCreativeGroups(metaRows){
     const bestCtr=bigCs.length?Math.max(...bigCs.map(c=>c.ctr||0)):0;
     const bestCvr=bigCs.filter(c=>c.cart_cvr).length?Math.max(...bigCs.filter(c=>c.cart_cvr).map(c=>c.cart_cvr||0)):0;
     const bestEr=bigCs.length?Math.max(...bigCs.map(c=>c.er||0)):0;
-
     const d=document.createElement('div');d.className='cg';
     const h=document.createElement('div');h.className='cgh';
     h.innerHTML='<span>'+gk+' ('+cs.length+'개)</span><span style="color:var(--text3);font-size:11px">광고비 '+fS(grpAgg.cost)+' | CPM '+F(grpAgg.cpm,'w')+' | CTR '+grpAgg.ctr.toFixed(2)+'% | ER(공유) '+F(grpAgg.er_share,'p3')+' | ER(저장) '+F(grpAgg.er_save,'p3')+' | 장바구니CVR '+(grpAgg.cart_cvr?F(grpAgg.cart_cvr,'p'):'N/A')+'</span>';
     const b=document.createElement('div');b.className='cgb'+(gi<3?' open':'');
-
-    // highlight: 최고=파랑, 평균이상=노랑, 평균이하=빨강 (소액 제외)
     let th='<table><thead><tr><th>소재명</th><th>광고비</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CPV</th><th>VTR</th><th>장바구니 CVR</th><th>구매 CVR</th><th>ER(종합)</th><th>ER(공감)</th><th>ER(공유)</th><th>ER(저장)</th></tr></thead><tbody>';
     cs.sort((a,b)=>b.cost-a.cost).forEach(c=>{
       const isSmall=c.cost<=100000;
@@ -749,7 +577,6 @@ function renderCreativeGroups(metaRows){
     d.appendChild(h);d.appendChild(b);ct.appendChild(d);
   });
 }
-
 loadAllData();
 </script>
 </body>
