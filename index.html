@@ -540,8 +540,8 @@ function renderKPIs(){
   const mPfx=hasWeekFilter?'WoW':'MoM';
   const mH=(cur,prev,inv)=>{if(!ml||!mp||prev==null||prev===0)return'';const pct=Math.round((cur-prev)/prev*100);if(pct===0)return'<span class="mom neutral">'+mPfx+' 0%</span>';const up=pct>0;const cls=inv?(up?'down':'up'):(up?'up':'down');return'<span class="mom '+cls+'">'+mPfx+' '+(up?'▲':'▼')+Math.abs(pct)+'%</span>'};
   const kpis=[
-    {l:'총 광고비',v:fC(t.cost),s:'',mm:ml?mH(ml.cost,mp.cost,false):''},
-    {l:'총 노출수',v:fC(t.imp),s:'',mm:ml?mH(ml.imp,mp.imp,false):''},
+    {l:'총 광고비',v:Math.round(t.cost).toLocaleString()+'원',s:'',mm:ml?mH(ml.cost,mp.cost,false):''},
+    {l:'총 노출수',v:t.imp.toLocaleString(),s:'',mm:ml?mH(ml.imp,mp.imp,false):''},
     {l:'CPM',v:F(t.cpm,'w'),s:'CPC '+F(t.cpc,'w'),mm:ml?mH(ml.cpm,mp.cpm,true):''},
     {l:'CTR',v:F(t.ctr,'p'),s:'',mm:ml?mH(ml.ctr,mp.ctr,false):''},
     {l:'CPV',v:F(t.cpv,'w'),s:'VTR '+(t.vtr!=null?F(t.vtr,'p'):'N/A'),mm:ml&&ml.cpv?mH(ml.cpv,mp.cpv,true):''},
