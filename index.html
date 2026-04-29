@@ -203,8 +203,6 @@ async function loadAllData(){
     function ncol(row, name){ return nv(col(row, name)); }
     function scol(row, name){ const v=col(row, name); return v!=null?String(v).trim():''; }
     // ===== Meta 파싱 =====
-    // DEBUG: 첫 행 컬럼 출력
-    if(metaData.length>0){const cols=Object.keys(metaData[0]);console.log('📋 Meta 컬럼 목록:',cols);const rvCols=cols.filter(c=>c.includes('매출')||c.includes('전환 가치')||c.includes('가치')||c.includes('ROAS')||c.includes('roas'));console.log('💰 매출/가치 관련 컬럼:',rvCols);}
     metaData.forEach(r=>{
       const cost = ncol(r,'최종 광고비 (원)');
       if(!cost) return;
@@ -213,7 +211,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'Meta',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,''))*ncol(r,'적용 환율 (원)'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
     // ===== Tiktok 파싱 (2026 only) =====
@@ -226,7 +224,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'Tiktok',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,''))*ncol(r,'적용 환율 (원)'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
     // ===== GSA 파싱 =====
@@ -238,7 +236,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'GSA',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,''))*ncol(r,'적용 환율 (원)'),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:''});
     });
     // ===== WL (주차 라벨) 생성 =====
