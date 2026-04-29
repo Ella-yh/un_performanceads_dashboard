@@ -132,14 +132,14 @@ td.grp-first{font-weight:700;color:var(--slate);vertical-align:middle;border-rig
   <div class="sec"><div class="sec-t"><div class="dot" style="background:var(--green)"></div>트래픽 캠페인 우수 소재</div>
     <div class="tp">
       <div class="tc2"><h3>CTR Top 3</h3><div id="trafCTR"></div></div>
-      <div class="tc2"><h3>장바구니 CVR Top 3</h3><div id="trafCVR"></div></div>
+      <div class="tc2"><h3>장바구니 CPA Top 3</h3><div id="trafCVR"></div></div>
       <div class="tc2"><h3>ER(공유+저장) Top 3</h3><div id="trafER"></div></div>
     </div>
   </div>
   <div class="sec"><div class="sec-t"><div class="dot" style="background:var(--blue)"></div>전환 캠페인 우수 소재</div>
     <div class="tp">
       <div class="tc2"><h3>CTR Top 3</h3><div id="convCTR"></div></div>
-      <div class="tc2"><h3>장바구니 CVR Top 3</h3><div id="convCVR"></div></div>
+      <div class="tc2"><h3>장바구니 CPA Top 3</h3><div id="convCVR"></div></div>
       <div class="tc2"><h3>ER(공유+저장) Top 3</h3><div id="convER"></div></div>
     </div>
   </div>
@@ -519,20 +519,20 @@ function renderTabB(){
   const convRows=metaRows.filter(r=>r.cg==='전환');
   const trafAgg=aggByCn(trafRows);
   const convAgg=aggByCn(convRows);
-  function renderTopList(cid,items,vKey,vFmt,bc){
-    const sorted=[...items].sort((a,b)=>(b[vKey]||0)-(a[vKey]||0)).slice(0,3);
+  function renderTopList(cid,items,vKey,vFmt,bc,asc=false){
+    const sorted=[...items].sort((a,b)=>asc?((a[vKey]||Infinity)-(b[vKey]||Infinity)):((b[vKey]||0)-(a[vKey]||0))).slice(0,3);
     $(cid).innerHTML=sorted.map((c,i)=>{
       const img=AD_IMG[c.cn]?'<img class="thumb" src="'+AD_IMG[c.cn]+'" alt="'+c.cn+'">':'';
-      const detail='광고비 '+fS(c.cost)+' · CPM '+F(c.cpm,'w')+'<br>CTR '+F(c.ctr,'p')+' · ER(공유) '+F(c.er_share,'p3')+' · ER(저장) '+F(c.er_save,'p3')+'<br>장바구니 CVR '+(c.cart_cvr?F(c.cart_cvr,'p'):'N/A');
+      const detail='광고비 '+fS(c.cost)+' · CPM '+F(c.cpm,'w')+'<br>CTR '+F(c.ctr,'p')+' · ER(공유) '+F(c.er_share,'p3')+' · ER(저장) '+F(c.er_save,'p3')+'<br>장바구니 CPA '+F(c.cart_cpa,'w')+' · 구매 CVR '+(c.pur_cvr?F(c.pur_cvr,'p'):'N/A');
       return'<div class="ti" style="align-items:flex-start;padding:10px 0"><div class="ti-img" style="align-items:flex-start">'+img+'<div><div class="tn">'+(i+1)+'. '+c.cn+'</div><div class="tg">'+c.grp+'</div><div class="ti-detail">'+detail+'</div></div></div><span class="bd '+bc+'" style="white-space:nowrap;margin-top:2px">'+vFmt(c[vKey])+'</span></div>'
     }).join('')||'<div style="padding:8px;color:var(--text3)">해당 없음</div>';
   }
   const erComb=items=>items.map(c=>({...c,er_cs:(c.er_share||0)+(c.er_save||0)}));
   renderTopList('trafCTR',trafAgg,'ctr',v=>v.toFixed(2)+'%','bd-c');
-  renderTopList('trafCVR',trafAgg.filter(x=>x.cart_cvr),'cart_cvr',v=>v?v.toFixed(2)+'%':'N/A','bd-v');
+  renderTopList('trafCVR',trafAgg.filter(x=>x.cart_cpa),'cart_cpa',v=>v?fC(v):'N/A','bd-v',true);
   renderTopList('trafER',erComb(trafAgg),'er_cs',v=>v.toFixed(3)+'%','bd-e');
   renderTopList('convCTR',convAgg,'ctr',v=>v.toFixed(2)+'%','bd-c');
-  renderTopList('convCVR',convAgg.filter(x=>x.cart_cvr),'cart_cvr',v=>v?v.toFixed(2)+'%':'N/A','bd-v');
+  renderTopList('convCVR',convAgg.filter(x=>x.cart_cpa),'cart_cpa',v=>v?fC(v):'N/A','bd-v',true);
   renderTopList('convER',erComb(convAgg),'er_cs',v=>v.toFixed(3)+'%','bd-e');
   renderCreativeGroups(metaRows);
 }
@@ -554,23 +554,26 @@ function renderCreativeGroups(metaRows){
     const grpAgg=agg(grp.rows);
     const bigCs=cs.filter(c=>c.cost>100000);
     const avgCtr=bigCs.length?bigCs.reduce((s,c)=>s+c.ctr,0)/bigCs.length:0;
-    const avgCvr=bigCs.filter(c=>c.cart_cvr).length?bigCs.filter(c=>c.cart_cvr).reduce((s,c)=>s+c.cart_cvr,0)/bigCs.filter(c=>c.cart_cvr).length:0;
+    const avgCpa=bigCs.filter(c=>c.cart_cpa).length?bigCs.filter(c=>c.cart_cpa).reduce((s,c)=>s+c.cart_cpa,0)/bigCs.filter(c=>c.cart_cpa).length:0;
+    const avgPurCvr=bigCs.filter(c=>c.pur_cvr).length?bigCs.filter(c=>c.pur_cvr).reduce((s,c)=>s+c.pur_cvr,0)/bigCs.filter(c=>c.pur_cvr).length:0;
     const avgEr=bigCs.length?bigCs.reduce((s,c)=>s+c.er,0)/bigCs.length:0;
     const bestCtr=bigCs.length?Math.max(...bigCs.map(c=>c.ctr||0)):0;
-    const bestCvr=bigCs.filter(c=>c.cart_cvr).length?Math.max(...bigCs.filter(c=>c.cart_cvr).map(c=>c.cart_cvr||0)):0;
+    const bestCpa=bigCs.filter(c=>c.cart_cpa).length?Math.min(...bigCs.filter(c=>c.cart_cpa).map(c=>c.cart_cpa||Infinity)):Infinity;
+    const bestPurCvr=bigCs.filter(c=>c.pur_cvr).length?Math.max(...bigCs.filter(c=>c.pur_cvr).map(c=>c.pur_cvr||0)):0;
     const bestEr=bigCs.length?Math.max(...bigCs.map(c=>c.er||0)):0;
     const d=document.createElement('div');d.className='cg';
     const h=document.createElement('div');h.className='cgh';
-    h.innerHTML='<span>'+gk+' ('+cs.length+'개)</span><span style="color:var(--text3);font-size:11px">광고비 '+fS(grpAgg.cost)+' | CPM '+F(grpAgg.cpm,'w')+' | CTR '+grpAgg.ctr.toFixed(2)+'% | ER(공유) '+F(grpAgg.er_share,'p3')+' | ER(저장) '+F(grpAgg.er_save,'p3')+' | 장바구니CVR '+(grpAgg.cart_cvr?F(grpAgg.cart_cvr,'p'):'N/A')+'</span>';
+    h.innerHTML='<span>'+gk+' ('+cs.length+'개)</span><span style="color:var(--text3);font-size:11px">광고비 '+fS(grpAgg.cost)+' | CPM '+F(grpAgg.cpm,'w')+' | CTR '+grpAgg.ctr.toFixed(2)+'% | ER(공유) '+F(grpAgg.er_share,'p3')+' | ER(저장) '+F(grpAgg.er_save,'p3')+' | 장바구니CPA '+(grpAgg.cart_cpa?F(grpAgg.cart_cpa,'w'):'N/A')+'</span>';
     const b=document.createElement('div');b.className='cgb'+(gi<3?' open':'');
-    let th='<table><thead><tr><th>소재명</th><th>광고비</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CPV</th><th>VTR</th><th>장바구니 CVR</th><th>구매 CVR</th><th>ER(종합)</th><th>ER(공감)</th><th>ER(공유)</th><th>ER(저장)</th></tr></thead><tbody>';
+    let th='<table><thead><tr><th>소재명</th><th>광고비</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CPV</th><th>VTR</th><th>장바구니 CPA</th><th>구매 CVR</th><th>ER(종합)</th><th>ER(공감)</th><th>ER(공유)</th><th>ER(저장)</th></tr></thead><tbody>';
     cs.sort((a,b)=>b.cost-a.cost).forEach(c=>{
       const isSmall=c.cost<=100000;
       const ctrCls=isSmall?'':c.ctr===bestCtr&&c.ctr>0?'highlight-best':c.ctr>avgCtr?'highlight-good':c.ctr<avgCtr&&c.ctr>0?'highlight-bad':'';
-      const cvrCls=isSmall||!c.cart_cvr?'':c.cart_cvr===bestCvr?'highlight-best':c.cart_cvr>avgCvr?'highlight-good':c.cart_cvr<avgCvr?'highlight-bad':'';
+      const cpaCls=isSmall||!c.cart_cpa?'':c.cart_cpa===bestCpa?'highlight-best':c.cart_cpa<avgCpa?'highlight-good':c.cart_cpa>avgCpa?'highlight-bad':'';
+      const purCvrCls=isSmall||!c.pur_cvr?'':c.pur_cvr===bestPurCvr?'highlight-best':c.pur_cvr>avgPurCvr?'highlight-good':c.pur_cvr<avgPurCvr?'highlight-bad':'';
       const erCls=isSmall?'':c.er===bestEr&&c.er>0?'highlight-best':c.er>avgEr?'highlight-good':c.er<avgEr&&c.er>0?'highlight-bad':'';
       const cImg=AD_IMG[c.cn]?'<img class="thumb" src="'+AD_IMG[c.cn]+'" style="vertical-align:middle;margin-right:6px">':'';
-      th+='<tr><td>'+cImg+c.cn+(isSmall?' <span style="color:var(--text3);font-size:10px">(소액)</span>':'')+'</td><td>'+F(c.cost,'w')+'</td><td>'+F(c.cpm,'w')+'</td><td class="'+ctrCls+'">'+F(c.ctr,'p')+'</td><td>'+F(c.cpc,'w')+'</td><td>'+F(c.cpv,'w')+'</td><td>'+F(c.vtr,'p')+'</td><td class="'+cvrCls+'">'+F(c.cart_cvr,'p')+'</td><td>'+F(c.pur_cvr,'p')+'</td><td class="'+erCls+'">'+F(c.er,'p3')+'</td><td>'+F(c.er_like,'p3')+'</td><td>'+F(c.er_share,'p3')+'</td><td>'+F(c.er_save,'p3')+'</td></tr>';
+      th+='<tr><td>'+cImg+c.cn+(isSmall?' <span style="color:var(--text3);font-size:10px">(소액)</span>':'')+'</td><td>'+F(c.cost,'w')+'</td><td>'+F(c.cpm,'w')+'</td><td class="'+ctrCls+'">'+F(c.ctr,'p')+'</td><td>'+F(c.cpc,'w')+'</td><td>'+F(c.cpv,'w')+'</td><td>'+F(c.vtr,'p')+'</td><td class="'+cpaCls+'">'+F(c.cart_cpa,'w')+'</td><td class="'+purCvrCls+'">'+F(c.pur_cvr,'p')+'</td><td class="'+erCls+'">'+F(c.er,'p3')+'</td><td>'+F(c.er_like,'p3')+'</td><td>'+F(c.er_share,'p3')+'</td><td>'+F(c.er_save,'p3')+'</td></tr>';
     });
     th+='</tbody></table>';b.innerHTML='<div class="tw">'+th+'</div>';
     h.addEventListener('click',()=>b.classList.toggle('open'));
