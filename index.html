@@ -211,7 +211,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'Meta',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:ncol(r,'전환 매출'),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
     // ===== Tiktok 파싱 (2026 only) =====
@@ -224,7 +224,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'Tiktok',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:ncol(r,'전환 매출'),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:scol(r,'소재명 파싱')});
     });
     // ===== GSA 파싱 =====
@@ -236,7 +236,7 @@ async function loadAllData(){
       const wk = usWeek(dt);
       if(wk && dt){if(!wkDates[wk])wkDates[wk]={min:dt,max:dt};if(dt<wkDates[wk].min)wkDates[wk].min=dt;if(dt>wkDates[wk].max)wkDates[wk].max=dt}
       rows.push({m:'GSA',mo,wk,dt,ch:scol(r,'channel'),cg:mapCG(col(r,'캠페인 목표')),og:mapOG(col(r,'최적화 목표')),pg:mapPG(col(r,'상품상세(그룹)')),
-        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:ncol(r,'전환 매출'),
+        c:cost,i:ncol(r,'노출 수'),cl:ncol(r,'클릭 수'),v:ncol(r,'조회'),ca:ncol(r,'장바구니 담기 수'),cv:ncol(r,'전환 수'),rv:nv(String(col(r,'전환 매출')||'').replace(/[^0-9.]/g,'')),
         lk:ncol(r,'게시물 공감'),cm:ncol(r,'게시물 댓글'),sh:ncol(r,'게시물 공유'),sv:ncol(r,'게시물 저장'),cn:''});
     });
     // ===== WL (주차 라벨) 생성 =====
@@ -354,7 +354,7 @@ function agg(rows){
     cpm:i>0?Math.round(c/i*1000):0,ctr:i>0?Math.round(cl/i*1e4)/100:0,cpc:cl>0?Math.round(c/cl):0,
     cpv:v>0?Math.round(c/v):null,vtr:v>0&&i>0?Math.round(v/i*1e4)/100:null,
     cart_cvr:cl>0&&ca>0?Math.round(ca/cl*1e4)/100:null,cart_cpa:ca>0?Math.round(c/ca):null,
-    pur_cvr:cl>0&&cv>0?Math.round(cv/cl*1e4)/100:null,pur_cpa:cv>0?Math.round(c/cv):null,roas:rv>0&&c>0?Math.round(rv/c*10000)/100:null,
+    pur_cvr:cl>0&&cv>0?Math.round(cv/cl*1e4)/100:null,pur_cpa:cv>0?Math.round(c/cv):null,roas:rv>0&&c>0?parseFloat((rv/c*100).toFixed(1)):null,
     er:i>0?Math.round(e/i*1e5)/1000:0,er_like:i>0?Math.round(lk/i*1e5)/1000:0,
     er_cmt:i>0?Math.round(cm/i*1e6)/1e4:0,er_share:i>0?Math.round(sh/i*1e5)/1000:0,er_save:i>0?Math.round(sv/i*1e5)/1000:0}
 }
@@ -524,7 +524,7 @@ function renderTabB(){
     const sorted=[...items].sort((a,b)=>asc?((a[vKey]||Infinity)-(b[vKey]||Infinity)):((b[vKey]||0)-(a[vKey]||0))).slice(0,3);
     $(cid).innerHTML=sorted.map((c,i)=>{
       const img=AD_IMG[c.cn]?'<img class="thumb" src="'+AD_IMG[c.cn]+'" alt="'+c.cn+'">':'';
-      const detail='광고비 '+fS(c.cost)+' · CPM '+F(c.cpm,'w')+'<br>CTR '+F(c.ctr,'p')+' · ER(공유) '+F(c.er_share,'p3')+' · ER(저장) '+F(c.er_save,'p3')+'<br>장바구니 CPA '+F(c.cart_cpa,'w')+' · 구매 CVR '+(c.pur_cvr?F(c.pur_cvr,'p'):'N/A');
+      const detail='광고비 '+fS(c.cost)+' · CPM '+F(c.cpm,'w')+'<br>CTR '+F(c.ctr,'p')+' · ER(공유) '+F(c.er_share,'p3')+' · ER(저장) '+F(c.er_save,'p3')+'<br>장바구니 CPA '+F(c.cart_cpa,'w')+' · 구매 CVR '+(c.pur_cvr?F(c.pur_cvr,'p'):'N/A')+' · ROAS '+(c.roas?c.roas.toFixed(1)+'%':'N/A');
       return'<div class="ti" style="align-items:flex-start;padding:10px 0"><div class="ti-img" style="align-items:flex-start">'+img+'<div><div class="tn">'+(i+1)+'. '+c.cn+'</div><div class="tg">'+c.grp+'</div><div class="ti-detail">'+detail+'</div></div></div><span class="bd '+bc+'" style="white-space:nowrap;margin-top:2px">'+vFmt(c[vKey])+'</span></div>'
     }).join('')||'<div style="padding:8px;color:var(--text3)">해당 없음</div>';
   }
