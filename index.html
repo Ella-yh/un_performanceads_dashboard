@@ -203,6 +203,8 @@ async function loadAllData(){
     function ncol(row, name){ return nv(col(row, name)); }
     function scol(row, name){ const v=col(row, name); return v!=null?String(v).trim():''; }
     // ===== Meta 파싱 =====
+    // DEBUG: 첫 행 컬럼 출력
+    if(metaData.length>0){const cols=Object.keys(metaData[0]);console.log('📋 Meta 컬럼 목록:',cols);const rvCols=cols.filter(c=>c.includes('매출')||c.includes('전환 가치')||c.includes('가치')||c.includes('ROAS')||c.includes('roas'));console.log('💰 매출/가치 관련 컬럼:',rvCols);}
     metaData.forEach(r=>{
       const cost = ncol(r,'최종 광고비 (원)');
       if(!cost) return;
